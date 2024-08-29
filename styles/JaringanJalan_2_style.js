@@ -1,7 +1,7 @@
 var size = 0;
 var placement = 'point';
 
-var style_KualaJambi_3 = function(feature, resolution){
+var style_JaringanJalan_2 = function(feature, resolution){
     var context = {
         feature: feature,
         variables: {}
@@ -16,13 +16,12 @@ var style_KualaJambi_3 = function(feature, resolution){
     var textAlign = "left";
     var offsetX = 8;
     var offsetY = 3;
-    var placement = 'point';
+    var placement = 'line';
     if ("" !== null) {
         labelText = String("");
     }
     var style = [ new ol.style.Style({
-        image: new ol.style.Circle({radius: 5.9999999999999964 + size,
-            stroke: new ol.style.Stroke({color: 'rgba(35,35,35,1.0)', lineDash: null, lineCap: 'butt', lineJoin: 'miter', width: 0.0}), fill: new ol.style.Fill({color: 'rgba(190,207,80,1.0)'})}),
+        stroke: new ol.style.Stroke({color: 'rgba(196,60,57,1.0)', lineDash: null, lineCap: 'square', lineJoin: 'bevel', width: 0.988}),
         text: createTextStyle(feature, resolution, labelText, labelFont,
                               labelFill, placement, bufferColor,
                               bufferWidth)
