@@ -9,7 +9,7 @@ var map = new ol.Map({
 });
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
-map.getView().fit([11550810.734297, -135720.204880, 11559364.890857, -129643.494760], map.getSize());
+map.getView().fit([11549459.566385, -134987.752334, 11555162.337426, -130936.608631], map.getSize());
 
 ////small screen definition
     var hasTouchScreen = map.getViewport().classList.contains('ol-touch');
@@ -831,17 +831,6 @@ if (elementToMove && parentElement) {
 
 //layer search
 
-var searchLayer = new SearchLayer({
-    layer: lyr_TanjungJabungTimur_2208_perbaikangdbTanjungJabungTimur_2208gdba0000000agdbtable_2,
-    colName: 'Nm_Ruas',
-    zoom: 10,
-    collapsed: true,
-    map: map
-});
-map.addControl(searchLayer);
-document.getElementsByClassName('search-layer')[0].getElementsByTagName('button')[0].className += ' fa fa-binoculars';
-document.getElementsByClassName('search-layer-input-search')[0].placeholder = 'Search feature ...';
-    
 
 //scalebar
 
