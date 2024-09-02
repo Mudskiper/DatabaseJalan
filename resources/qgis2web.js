@@ -9,7 +9,7 @@ var map = new ol.Map({
 });
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
-map.getView().fit([11497506.961520, -179302.034506, 11619166.077050, -92876.082865], map.getSize());
+map.getView().fit([11539102.627867, -145938.585109, 11569517.406749, -124332.320700], map.getSize());
 
 ////small screen definition
     var hasTouchScreen = map.getViewport().classList.contains('ol-touch');
@@ -902,7 +902,7 @@ if (elementToMove && parentElement) {
 //layer search
 
 var searchLayer = new SearchLayer({
-    layer: lyr_JaringanJalan_4,
+    layer: lyr_JaringanJalan_5,
     colName: 'Nm_Ruas',
     zoom: 10,
     collapsed: true,
