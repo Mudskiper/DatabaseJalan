@@ -183,7 +183,7 @@
                 lineJoin: 'miter',
                 weight: 2.0, 
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_Kabupaten_2');
@@ -191,7 +191,7 @@
         map.getPane('pane_Kabupaten_2').style['mix-blend-mode'] = 'normal';
         var layer_Kabupaten_2 = new L.geoJson(json_Kabupaten_2, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_Kabupaten_2',
             layerName: 'layer_Kabupaten_2',
             pane: 'pane_Kabupaten_2',
@@ -265,7 +265,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_Desa_3');
@@ -273,7 +273,7 @@
         map.getPane('pane_Desa_3').style['mix-blend-mode'] = 'normal';
         var layer_Desa_3 = new L.geoJson(json_Desa_3, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_Desa_3',
             layerName: 'layer_Desa_3',
             pane: 'pane_Desa_3',
@@ -332,7 +332,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_Kecamatan_4');
@@ -340,7 +340,7 @@
         map.getPane('pane_Kecamatan_4').style['mix-blend-mode'] = 'normal';
         var layer_Kecamatan_4 = new L.geoJson(json_Kecamatan_4, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_Kecamatan_4',
             layerName: 'layer_Kecamatan_4',
             pane: 'pane_Kecamatan_4',
@@ -536,8 +536,7 @@
                         <td class="visible-with-data" id="Diproses">' + (feature.properties['Diproses'] !== null ? autolinker.link(feature.properties['Diproses'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Images</th>\
-                        <td class="visible-with-data" id="Images">' + (feature.properties['Images'] !== null ? autolinker.link(feature.properties['Images'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Images'] !== null ? autolinker.link(feature.properties['Images'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
