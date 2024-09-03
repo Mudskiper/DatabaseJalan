@@ -30,6 +30,7 @@
         <script src="js/leaflet.js"></script>
         <script src="js/L.Control.Layers.Tree.min.js"></script>
         <script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -43,7 +44,7 @@
         <script src="data/Desa_3.js"></script>
         <script src="data/Kecamatan_4.js"></script>
         <script src="data/JaringanJalan_5.js"></script>
-        <script src="data/KualaJambi_6.js"></script>
+        <script src="data/2022FotoKualaJambi_6.js"></script>
         <script src="data/Sistemperkotaan_7.js"></script>
         <script>
         var highlightLayer;
@@ -63,7 +64,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-1.2164695316381626,103.74711485352569],[-1.1679573499381937,103.81542000535924]]);
+        }).fitBounds([[-1.2074537629367428,103.76117537372721],[-1.1782934351389476,103.79532794964399]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -124,7 +125,6 @@
             maxNativeZoom: 18
         });
         layer_EsriSatelite_0;
-        map.addLayer(layer_EsriSatelite_0);
         map.createPane('pane_OpenStreetMap_1');
         map.getPane('pane_OpenStreetMap_1').style.zIndex = 401;
         var layer_OpenStreetMap_1 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -183,7 +183,7 @@
                 lineJoin: 'miter',
                 weight: 2.0, 
                 fillOpacity: 0,
-                interactive: false,
+                interactive: true,
             }
         }
         map.createPane('pane_Kabupaten_2');
@@ -191,7 +191,7 @@
         map.getPane('pane_Kabupaten_2').style['mix-blend-mode'] = 'normal';
         var layer_Kabupaten_2 = new L.geoJson(json_Kabupaten_2, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_Kabupaten_2',
             layerName: 'layer_Kabupaten_2',
             pane: 'pane_Kabupaten_2',
@@ -199,7 +199,6 @@
             style: style_Kabupaten_2_0,
         });
         bounds_group.addLayer(layer_Kabupaten_2);
-        map.addLayer(layer_Kabupaten_2);
         function pop_Desa_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -266,7 +265,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fillOpacity: 0,
-                interactive: false,
+                interactive: true,
             }
         }
         map.createPane('pane_Desa_3');
@@ -274,7 +273,7 @@
         map.getPane('pane_Desa_3').style['mix-blend-mode'] = 'normal';
         var layer_Desa_3 = new L.geoJson(json_Desa_3, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_Desa_3',
             layerName: 'layer_Desa_3',
             pane: 'pane_Desa_3',
@@ -282,7 +281,6 @@
             style: style_Desa_3_0,
         });
         bounds_group.addLayer(layer_Desa_3);
-        map.addLayer(layer_Desa_3);
         function pop_Kecamatan_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -334,7 +332,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fillOpacity: 0,
-                interactive: false,
+                interactive: true,
             }
         }
         map.createPane('pane_Kecamatan_4');
@@ -342,7 +340,7 @@
         map.getPane('pane_Kecamatan_4').style['mix-blend-mode'] = 'normal';
         var layer_Kecamatan_4 = new L.geoJson(json_Kecamatan_4, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_Kecamatan_4',
             layerName: 'layer_Kecamatan_4',
             pane: 'pane_Kecamatan_4',
@@ -350,7 +348,6 @@
             style: style_Kecamatan_4_0,
         });
         bounds_group.addLayer(layer_Kecamatan_4);
-        map.addLayer(layer_Kecamatan_4);
         function pop_JaringanJalan_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -365,95 +362,91 @@
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Kl_Dat_Das</th>\
-                        <td>' + (feature.properties['Kl_Dat_Das'] !== null ? autolinker.link(feature.properties['Kl_Dat_Das'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Kl_Dat_Das">' + (feature.properties['Kl_Dat_Das'] !== null ? autolinker.link(feature.properties['Kl_Dat_Das'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Nm_Ruas</th>\
-                        <td>' + (feature.properties['Nm_Ruas'] !== null ? autolinker.link(feature.properties['Nm_Ruas'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Nm_Ruas">' + (feature.properties['Nm_Ruas'] !== null ? autolinker.link(feature.properties['Nm_Ruas'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Thn_Data</th>\
-                        <td>' + (feature.properties['Thn_Data'] !== null ? autolinker.link(feature.properties['Thn_Data'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Thn_Data">' + (feature.properties['Thn_Data'] !== null ? autolinker.link(feature.properties['Thn_Data'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Fungsi</th>\
-                        <td>' + (feature.properties['Fungsi'] !== null ? autolinker.link(feature.properties['Fungsi'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Fungsi">' + (feature.properties['Fungsi'] !== null ? autolinker.link(feature.properties['Fungsi'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Mendukung</th>\
-                        <td>' + (feature.properties['Mendukung'] !== null ? autolinker.link(feature.properties['Mendukung'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Mendukung">' + (feature.properties['Mendukung'] !== null ? autolinker.link(feature.properties['Mendukung'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Kd_Inf</th>\
-                        <td>' + (feature.properties['Kd_Inf'] !== null ? autolinker.link(feature.properties['Kd_Inf'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Kd_Inf">' + (feature.properties['Kd_Inf'] !== null ? autolinker.link(feature.properties['Kd_Inf'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Propinsi</th>\
-                        <td>' + (feature.properties['Propinsi'] !== null ? autolinker.link(feature.properties['Propinsi'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Propinsi">' + (feature.properties['Propinsi'] !== null ? autolinker.link(feature.properties['Propinsi'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Kab_Kot</th>\
-                        <td>' + (feature.properties['Kab_Kot'] !== null ? autolinker.link(feature.properties['Kab_Kot'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Kab_Kot">' + (feature.properties['Kab_Kot'] !== null ? autolinker.link(feature.properties['Kab_Kot'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Desa_Kel</th>\
-                        <td>' + (feature.properties['Desa_Kel'] !== null ? autolinker.link(feature.properties['Desa_Kel'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Kon_Baik</th>\
-                        <td>' + (feature.properties['Kon_Baik'] !== null ? autolinker.link(feature.properties['Kon_Baik'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Kon_Sdg</th>\
-                        <td>' + (feature.properties['Kon_Sdg'] !== null ? autolinker.link(feature.properties['Kon_Sdg'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Kon_Rgn</th>\
-                        <td>' + (feature.properties['Kon_Rgn'] !== null ? autolinker.link(feature.properties['Kon_Rgn'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Kon_Rusak</th>\
-                        <td>' + (feature.properties['Kon_Rusak'] !== null ? autolinker.link(feature.properties['Kon_Rusak'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Kon_Mntp</th>\
-                        <td>' + (feature.properties['Kon_Mntp'] !== null ? autolinker.link(feature.properties['Kon_Mntp'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Kon_T_Mntp</th>\
-                        <td>' + (feature.properties['Kon_T_Mntp'] !== null ? autolinker.link(feature.properties['Kon_T_Mntp'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Tipe_Keras</th>\
-                        <td>' + (feature.properties['Tipe_Keras'] !== null ? autolinker.link(feature.properties['Tipe_Keras'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Tanah_Kri</th>\
-                        <td>' + (feature.properties['Tanah_Kri'] !== null ? autolinker.link(feature.properties['Tanah_Kri'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Macadam</th>\
-                        <td>' + (feature.properties['Macadam'] !== null ? autolinker.link(feature.properties['Macadam'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Rigid</th>\
-                        <td>' + (feature.properties['Rigid'] !== null ? autolinker.link(feature.properties['Rigid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Aspal</th>\
-                        <td>' + (feature.properties['Aspal'] !== null ? autolinker.link(feature.properties['Aspal'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Panjang</th>\
-                        <td>' + (feature.properties['Panjang'] !== null ? autolinker.link(feature.properties['Panjang'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Desa_Kel">' + (feature.properties['Desa_Kel'] !== null ? autolinker.link(feature.properties['Desa_Kel'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Kecamatan</th>\
-                        <td>' + (feature.properties['Kecamatan'] !== null ? autolinker.link(feature.properties['Kecamatan'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Kecamatan">' + (feature.properties['Kecamatan'] !== null ? autolinker.link(feature.properties['Kecamatan'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Status</th>\
-                        <td>' + (feature.properties['Status'] !== null ? autolinker.link(feature.properties['Status'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Status">' + (feature.properties['Status'] !== null ? autolinker.link(feature.properties['Status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Panjang (m)</th>\
+                        <td class="visible-with-data" id="Panjang (m)">' + (feature.properties['Panjang (m)'] !== null ? autolinker.link(feature.properties['Panjang (m)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kon_Baik</th>\
+                        <td class="visible-with-data" id="Kon_Baik">' + (feature.properties['Kon_Baik'] !== null ? autolinker.link(feature.properties['Kon_Baik'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kon_Sdg</th>\
+                        <td class="visible-with-data" id="Kon_Sdg">' + (feature.properties['Kon_Sdg'] !== null ? autolinker.link(feature.properties['Kon_Sdg'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kon_Rgn</th>\
+                        <td class="visible-with-data" id="Kon_Rgn">' + (feature.properties['Kon_Rgn'] !== null ? autolinker.link(feature.properties['Kon_Rgn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kon_Rusak</th>\
+                        <td class="visible-with-data" id="Kon_Rusak">' + (feature.properties['Kon_Rusak'] !== null ? autolinker.link(feature.properties['Kon_Rusak'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kon_Mntp</th>\
+                        <td class="visible-with-data" id="Kon_Mntp">' + (feature.properties['Kon_Mntp'] !== null ? autolinker.link(feature.properties['Kon_Mntp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kon_T_Mntp</th>\
+                        <td class="visible-with-data" id="Kon_T_Mntp">' + (feature.properties['Kon_T_Mntp'] !== null ? autolinker.link(feature.properties['Kon_T_Mntp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Beton (m)</th>\
+                        <td class="visible-with-data" id="Beton (m)">' + (feature.properties['Beton (m)'] !== null ? autolinker.link(feature.properties['Beton (m)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Aspal (m)</th>\
+                        <td class="visible-with-data" id="Aspal (m)">' + (feature.properties['Aspal (m)'] !== null ? autolinker.link(feature.properties['Aspal (m)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kerikil (m)</th>\
+                        <td class="visible-with-data" id="Kerikil (m)">' + (feature.properties['Kerikil (m)'] !== null ? autolinker.link(feature.properties['Kerikil (m)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Tanah (m)</th>\
+                        <td class="visible-with-data" id="Tanah (m)">' + (feature.properties['Tanah (m)'] !== null ? autolinker.link(feature.properties['Tanah (m)'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -490,7 +483,7 @@
         });
         bounds_group.addLayer(layer_JaringanJalan_5);
         map.addLayer(layer_JaringanJalan_5);
-        function pop_KualaJambi_6(feature, layer) {
+        function pop_2022FotoKualaJambi_6(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -503,46 +496,48 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Nama Jalan</th>\
+                        <td class="visible-with-data" id="Nama Jalan">' + (feature.properties['Nama Jalan'] !== null ? autolinker.link(feature.properties['Nama Jalan'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Nomor'] !== null ? autolinker.link(feature.properties['Nomor'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Panjang</th>\
+                        <td class="visible-with-data" id="Panjang">' + (feature.properties['Panjang'] !== null ? autolinker.link(feature.properties['Panjang'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Nama Jalan'] !== null ? autolinker.link(feature.properties['Nama Jalan'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Kecamatan</th>\
+                        <td class="visible-with-data" id="Kecamatan">' + (feature.properties['Kecamatan'] !== null ? autolinker.link(feature.properties['Kecamatan'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Nomor Ruas'] !== null ? autolinker.link(feature.properties['Nomor Ruas'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Status</th>\
+                        <td class="visible-with-data" id="Status">' + (feature.properties['Status'] !== null ? autolinker.link(feature.properties['Status'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Panjang'] !== null ? autolinker.link(feature.properties['Panjang'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Longitude</th>\
+                        <td class="visible-with-data" id="Longitude">' + (feature.properties['Longitude'] !== null ? autolinker.link(feature.properties['Longitude'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Lebar'] !== null ? autolinker.link(feature.properties['Lebar'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Latitude</th>\
+                        <td class="visible-with-data" id="Latitude">' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Kecamatan'] !== null ? autolinker.link(feature.properties['Kecamatan'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Tahun</th>\
+                        <td class="visible-with-data" id="Tahun">' + (feature.properties['Tahun'] !== null ? autolinker.link(feature.properties['Tahun'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Status'] !== null ? autolinker.link(feature.properties['Status'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Instansi</th>\
+                        <td class="visible-with-data" id="Instansi">' + (feature.properties['Instansi'] !== null ? autolinker.link(feature.properties['Instansi'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Lon'] !== null ? autolinker.link(feature.properties['Lon'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Bidang</th>\
+                        <td class="visible-with-data" id="Bidang">' + (feature.properties['Bidang'] !== null ? autolinker.link(feature.properties['Bidang'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Lat'] !== null ? autolinker.link(feature.properties['Lat'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Diproses</th>\
+                        <td class="visible-with-data" id="Diproses">' + (feature.properties['Diproses'] !== null ? autolinker.link(feature.properties['Diproses'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Date'] !== null ? autolinker.link(feature.properties['Date'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Instansi'] !== null ? autolinker.link(feature.properties['Instansi'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Images'] !== null ? autolinker.link(feature.properties['Images'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Path'] !== null ? autolinker.link(feature.properties['Path'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Images</th>\
+                        <td class="visible-with-data" id="Images">' + (feature.properties['Images'] !== null ? autolinker.link(feature.properties['Images'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -552,42 +547,37 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_KualaJambi_6_0() {
+        function style_2022FotoKualaJambi_6_0() {
             return {
-                pane: 'pane_KualaJambi_6',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(190,207,80,1.0)',
+                pane: 'pane_2022FotoKualaJambi_6',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/2022FotoKualaJambi_6.svg',
+            iconSize: [19.000000000000004, 19.000000000000004]
+        }),
                 interactive: true,
             }
         }
-        map.createPane('pane_KualaJambi_6');
-        map.getPane('pane_KualaJambi_6').style.zIndex = 406;
-        map.getPane('pane_KualaJambi_6').style['mix-blend-mode'] = 'normal';
-        var layer_KualaJambi_6 = new L.geoJson(json_KualaJambi_6, {
+        map.createPane('pane_2022FotoKualaJambi_6');
+        map.getPane('pane_2022FotoKualaJambi_6').style.zIndex = 406;
+        map.getPane('pane_2022FotoKualaJambi_6').style['mix-blend-mode'] = 'normal';
+        var layer_2022FotoKualaJambi_6 = new L.geoJson(json_2022FotoKualaJambi_6, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_KualaJambi_6',
-            layerName: 'layer_KualaJambi_6',
-            pane: 'pane_KualaJambi_6',
-            onEachFeature: pop_KualaJambi_6,
+            dataVar: 'json_2022FotoKualaJambi_6',
+            layerName: 'layer_2022FotoKualaJambi_6',
+            pane: 'pane_2022FotoKualaJambi_6',
+            onEachFeature: pop_2022FotoKualaJambi_6,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_KualaJambi_6_0(feature));
+                return L.marker(latlng, style_2022FotoKualaJambi_6_0(feature));
             },
         });
-        bounds_group.addLayer(layer_KualaJambi_6);
-        map.addLayer(layer_KualaJambi_6);
+        bounds_group.addLayer(layer_2022FotoKualaJambi_6);
         function pop_Sistemperkotaan_7(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -622,67 +612,70 @@
 
         function style_Sistemperkotaan_7_0(feature) {
             switch(String(feature.properties['Kategori'])) {
-                case 'Pusat Kegiatan Lokal (PKL)':
-                    return {
-                pane: 'pane_Sistemperkotaan_7',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(52,151,237,1.0)',
-                interactive: true,
-            }
-                    break;
                 case 'Pusat Kegiatan Wilayah (PKW)':
                     return {
                 pane: 'pane_Sistemperkotaan_7',
-                radius: 4.0,
+                shape: 'triangle',
+                radius: 6.0,
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(227,26,28,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1,
+                weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(228,240,59,1.0)',
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Pusat Kegiatan Lokal (PKL)':
+                    return {
+                pane: 'pane_Sistemperkotaan_7',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '10.0,2.0',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Pusat Pelayanan Kawasan (PPK)':
                     return {
                 pane: 'pane_Sistemperkotaan_7',
-                radius: 4.0,
+                shape: 'triangle',
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1,
+                weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(227,87,106,1.0)',
+                fillColor: 'rgba(255,178,255,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Pusat Pelayanan Lingkungan (PPL)':
                     return {
                 pane: 'pane_Sistemperkotaan_7',
-                radius: 4.0,
+                shape: 'triangle',
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1,
+                weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(168,87,209,1.0)',
+                fillColor: 'rgba(255,204,0,1.0)',
                 interactive: true,
             }
                     break;
@@ -703,15 +696,16 @@
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Sistemperkotaan_7_0(feature));
+                return L.shapeMarker(latlng, style_Sistemperkotaan_7_0(feature));
             },
         });
         bounds_group.addLayer(layer_Sistemperkotaan_7);
         map.addLayer(layer_Sistemperkotaan_7);
         var baseMaps = {};
         var overlaysTree = [
-            {label: 'Sistem perkotaan<br /><table><tr><td style="text-align: center;"><img src="legend/Sistemperkotaan_7_PusatKegiatanLokalPKL0.png" /></td><td>Pusat Kegiatan Lokal (PKL)</td></tr><tr><td style="text-align: center;"><img src="legend/Sistemperkotaan_7_PusatKegiatanWilayahPKW1.png" /></td><td>Pusat Kegiatan Wilayah (PKW)</td></tr><tr><td style="text-align: center;"><img src="legend/Sistemperkotaan_7_PusatPelayananKawasanPPK2.png" /></td><td>Pusat Pelayanan Kawasan (PPK)</td></tr><tr><td style="text-align: center;"><img src="legend/Sistemperkotaan_7_PusatPelayananLingkunganPPL3.png" /></td><td>Pusat Pelayanan Lingkungan (PPL)</td></tr></table>', layer: layer_Sistemperkotaan_7},
-            {label: '<img src="legend/KualaJambi_6.png" /> Kuala Jambi', layer: layer_KualaJambi_6},
+            {label: 'Sistem perkotaan<br /><table><tr><td style="text-align: center;"><img src="legend/Sistemperkotaan_7_PusatKegiatanWilayahPKW0.png" /></td><td>Pusat Kegiatan Wilayah (PKW)</td></tr><tr><td style="text-align: center;"><img src="legend/Sistemperkotaan_7_PusatKegiatanLokalPKL1.png" /></td><td>Pusat Kegiatan Lokal (PKL)</td></tr><tr><td style="text-align: center;"><img src="legend/Sistemperkotaan_7_PusatPelayananKawasanPPK2.png" /></td><td>Pusat Pelayanan Kawasan (PPK)</td></tr><tr><td style="text-align: center;"><img src="legend/Sistemperkotaan_7_PusatPelayananLingkunganPPL3.png" /></td><td>Pusat Pelayanan Lingkungan (PPL)</td></tr></table>', layer: layer_Sistemperkotaan_7},
+        {label: '<b>Foto Kondisi Jalan</b>', selectAllCheckbox: true, children: [
+            {label: '<img src="legend/2022FotoKualaJambi_6.png" /> 2022-Foto Kuala Jambi ', layer: layer_2022FotoKualaJambi_6},]},
             {label: '<img src="legend/JaringanJalan_5.png" /> Jaringan Jalan', layer: layer_JaringanJalan_5},
         {label: '<b>Batas Administrasi</b>', selectAllCheckbox: true, children: [
             {label: '<img src="legend/Kecamatan_4.png" /> Kecamatan', layer: layer_Kecamatan_4},
